@@ -1,0 +1,116 @@
+Text_ID,Crime_Type,Location_Entity,Sentiment,Topic,Severity_Label
+TXT_001,Shooting,"Jeff, Tusc Co",Negative,shooting,High
+TXT_002,Shooting,,Negative,shooting,High
+TXT_003,General Crime,,Neutral,general crime report,Low
+TXT_004,Disturbance,,Negative,disturbance,Medium
+TXT_005,Assault,,Negative,assault,High
+TXT_006,General Crime,,Negative,general crime report,Medium
+TXT_007,Robbery,,Negative,robbery,Medium
+TXT_008,General Crime,Pakistan,Negative,general crime report,Medium
+TXT_009,General Crime,,Negative,general crime report,Medium
+TXT_010,Drug Crime,Baltimore,Neutral,drug-related incident,Medium
+TXT_011,General Crime,Redbridge,Neutral,general crime report,Low
+TXT_012,General Crime,,Negative,general crime report,Medium
+TXT_013,General Crime,,Neutral,general crime report,Low
+TXT_014,General Crime,Badger Guns,Neutral,general crime report,Low
+TXT_015,Disturbance,,Negative,disturbance,Medium
+TXT_016,General Crime,Delhi,Negative,general crime report,Medium
+TXT_017,General Crime,Delhi,Negative,general crime report,Medium
+TXT_018,General Crime,Delhi,Negative,general crime report,Medium
+TXT_019,General Crime,Delhi,Negative,general crime report,Medium
+TXT_020,General Crime,,Negative,general crime report,Medium
+TXT_021,General Crime,Delhi,Negative,general crime report,Medium
+TXT_022,General Crime,,Negative,general crime report,Medium
+TXT_023,General Crime,,Negative,general crime report,Medium
+TXT_024,General Crime,Delhi,Negative,general crime report,Medium
+TXT_025,General Crime,,Negative,general crime report,Medium
+TXT_026,Robbery,Rs 8,Neutral,robbery,Medium
+TXT_027,General Crime,Mumbai,Neutral,general crime report,Low
+TXT_028,General Crime,Delhi,Negative,general crime report,Medium
+TXT_029,General Crime,,Negative,general crime report,Medium
+TXT_030,General Crime,,Neutral,general crime report,Low
+TXT_031,Fire,,Negative,fire,Medium
+TXT_032,General Crime,,Negative,general crime report,Medium
+TXT_033,Kidnapping,Onitsha,Neutral,kidnapping,High
+TXT_034,General Crime,,Negative,general crime report,Medium
+TXT_035,General Crime,,Negative,general crime report,Medium
+TXT_036,General Crime,,Neutral,general crime report,Low
+TXT_037,General Crime,Petaluma,Neutral,general crime report,Low
+TXT_038,General Crime,,Negative,general crime report,Medium
+TXT_039,Disturbance,,Negative,disturbance,Medium
+TXT_040,Murder,,Negative,murder,High
+TXT_041,General Crime,,Neutral,general crime report,Low
+TXT_042,General Crime,,Negative,general crime report,Medium
+TXT_043,General Crime,,Neutral,general crime report,Low
+TXT_044,Assault,,Negative,assault,Medium
+TXT_045,Shooting,Pontchartrain Park,Negative,shooting,High
+TXT_046,Assault,,Negative,assault,Medium
+TXT_047,General Crime,Delhi,Negative,general crime report,Medium
+TXT_048,Murder,Murder Case,Negative,murder,High
+TXT_049,General Crime,Petaluma,Neutral,general crime report,Low
+TXT_050,General Crime,,Negative,general crime report,Medium
+TXT_051,General Crime,Petaluma,Neutral,general crime report,Low
+TXT_052,Shooting,Pontchartrain Park,Negative,shooting,High
+TXT_053,General Crime,Detroit,Negative,general crime report,Medium
+TXT_054,General Crime,,Negative,general crime report,Medium
+TXT_055,General Crime,,Negative,general crime report,Medium
+TXT_056,General Crime,,Negative,general crime report,Medium
+TXT_057,General Crime,,Neutral,general crime report,Low
+TXT_058,General Crime,Petaluma,Neutral,general crime report,Low
+TXT_059,General Crime,,Negative,general crime report,Medium
+TXT_060,General Crime,,Negative,general crime report,Medium
+TXT_061,General Crime,,Negative,general crime report,Medium
+TXT_062,General Crime,,Negative,general crime report,Medium
+TXT_063,Disturbance,,Negative,disturbance,Medium
+TXT_064,General Crime,,Negative,general crime report,Medium
+TXT_065,Murder,,Negative,murder,High
+TXT_066,General Crime,,Negative,general crime report,Medium
+TXT_067,Shooting,Pontchartrain Park,Negative,shooting,High
+TXT_068,Shooting,Pontchartrain Park,Negative,shooting,High
+TXT_069,Shooting,Pontchartrain Park,Negative,shooting,High
+TXT_070,Shooting,,Negative,shooting,High
+TXT_071,General Crime,,Neutral,general crime report,Low
+TXT_072,Shooting,"Pontchartrain Park, Gentilly",Negative,shooting,High
+TXT_073,General Crime,,Negative,general crime report,Medium
+TXT_074,Drug Crime,,Neutral,drug-related incident,Medium
+TXT_075,General Crime,,Negative,general crime report,Medium
+TXT_076,Shooting,Pontchartrain Park,Negative,shooting,High
+TXT_077,Drug Crime,,Negative,drug-related incident,Medium
+TXT_078,Drug Crime,,Negative,drug-related incident,Medium
+TXT_079,General Crime,,Negative,general crime report,Medium
+TXT_080,General Crime,,Negative,general crime report,Medium
+TXT_081,General Crime,,Negative,general crime report,Medium
+TXT_082,General Crime,,Negative,general crime report,Medium
+TXT_083,General Crime,,Negative,general crime report,Medium
+TXT_084,Drug Crime,,Neutral,drug-related incident,Medium
+TXT_085,Drug Crime,,Neutral,drug-related incident,Medium
+TXT_086,Drug Crime,,Neutral,drug-related incident,Medium
+TXT_087,Drug Crime,,Neutral,drug-related incident,Medium
+TXT_088,Drug Crime,,Neutral,drug-related incident,Medium
+TXT_089,Drug Crime,,Neutral,drug-related incident,Medium
+TXT_090,Drug Crime,,Neutral,drug-related incident,Medium
+TXT_091,General Crime,,Neutral,general crime report,Low
+TXT_092,General Crime,,Negative,general crime report,Medium
+TXT_093,General Crime,,Negative,general crime report,Medium
+TXT_094,General Crime,,Negative,general crime report,Medium
+TXT_095,General Crime,,Negative,general crime report,High
+TXT_096,General Crime,,Negative,general crime report,Medium
+TXT_097,General Crime,,Negative,general crime report,Medium
+TXT_098,Drug Crime,McDonald,Neutral,drug-related incident,Medium
+TXT_099,Fraud,,Neutral,fraud,Low
+TXT_100,General Crime,,Negative,general crime report,Medium
+TXT_101,General Crime,,Negative,general crime report,Medium
+TXT_102,General Crime,,Negative,general crime report,Medium
+TXT_103,General Crime,,Negative,general crime report,Medium
+TXT_104,Murder,,Negative,murder,High
+TXT_105,Fire,Richland,Negative,fire,Medium
+TXT_106,General Crime,,Negative,general crime report,Medium
+TXT_107,Fire,Richland,Negative,fire,Medium
+TXT_108,General Crime,,Negative,general crime report,Medium
+TXT_109,General Crime,Delhi,Negative,general crime report,Medium
+TXT_110,General Crime,Badger Guns,Neutral,general crime report,Low
+TXT_111,General Crime,,Negative,general crime report,Medium
+TXT_112,General Crime,Badger Guns,Neutral,general crime report,Low
+TXT_113,General Crime,,Negative,general crime report,Medium
+TXT_114,General Crime,,Negative,general crime report,Medium
+TXT_115,General Crime,,Neutral,general crime report,Low

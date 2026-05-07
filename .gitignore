@@ -1,0 +1,33 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+
+# Large modality folders
+audio/
+images/
+integration/
+video/
+
+# Large model files
+*.pt
+*.pth
+*.pkl
+*.h5
+
+# Archives and media
+*.zip
+*.mp4
+*.mov
+*.avi
+*.mp3
+*.wav
+*.jpg
+*.jpeg
+*.png
