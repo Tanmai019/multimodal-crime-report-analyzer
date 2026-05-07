@@ -1,0 +1,6 @@
+pandas
+openai-whisper
+spacy
+transformers
+torch
+sentencepiece

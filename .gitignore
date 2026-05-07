@@ -10,11 +10,29 @@ venv/
 .env
 
 # Large modality folders
-audio/
-images/
-integration/
-video/
+audio/data/
+audio/output/
 
+images/data/
+images/output/
+
+integration/data/
+integration/output/
+
+video/data/
+video/output/
+
+pdf/data/
+pdf/output/
+
+*.mp4
+*.mov
+*.avi
+*.wav
+*.mp3
+*.png
+*.jpg
+*.jpeg
 # Large model files
 *.pt
 *.pth

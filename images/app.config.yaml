@@ -1,0 +1,24 @@
+roboflow:
+  workspace: "gadjiiavov-n4n8k"
+  project: "fire-fhsxx"
+  version: 2
+  format: "yolov8"
+
+train:
+  base_model: "yolov8n.pt"
+  epochs: 10
+  imgsz: 256
+  batch: 16
+  run_name: "fire_model"
+  patience: 3
+
+inference:
+  confidence: 0.4
+  max_images: 150
+
+paths:
+  weights: "runs/detect/fire_model/weights/best.pt"
+
+outputs:
+  csv: "output/image_analyst_output.csv"
+  sample_image: "output/detection_sample.png"

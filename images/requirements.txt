@@ -1,0 +1,9 @@
+roboflow
+ultralytics
+opencv-python
+pytesseract
+pandas
+Pillow
+matplotlib
+python-dotenv
+PyYAML
