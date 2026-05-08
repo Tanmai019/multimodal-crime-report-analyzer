@@ -1,16 +1,47 @@
 # Document Analysis Module
 
-This module extracts structured incident information from PDF reports and writes the result as a one-row CSV.
+PDF-based incident intelligence extraction pipeline for processing structured and scanned incident reports using OCR and NLP workflows.
 
-## Folder Layout
+This module is part of the larger Multimodal Crime Report Analyzer system and focuses on extracting structured incident information from PDF reports using text extraction, OCR fallback processing, and named entity recognition techniques.
 
-- `src/` contains the PDF parsing script
-- `data/` contains input PDF files
-- `output/` contains generated CSV output
+The pipeline converts unstructured incident documents into structured CSV outputs suitable for downstream multimodal integration.
 
-## What It Extracts
+---
 
-The current script outputs these columns:
+# Tech Stack
+
+`Python` `PyMuPDF` `Tesseract OCR` `spaCy` `NLP` `OCR` `Pandas` `PDF Processing`
+
+---
+
+# Module Overview
+
+The document analysis pipeline processes incident-related PDF reports and extracts:
+
+- Incident type
+- Incident date
+- Location information
+- Officer information
+- Incident summaries
+
+The extracted information is converted into structured CSV format for integration into the multimodal incident intelligence system.
+
+---
+
+# Features
+
+- Native PDF text extraction
+- OCR fallback for scanned PDFs
+- Named Entity Recognition (NER)
+- Rule-based field extraction
+- Structured CSV export
+- PDF-to-incident intelligence workflow
+
+---
+
+# Extracted Fields
+
+Generated output columns:
 
 - `Report_ID`
 - `Incident_Type`
@@ -19,13 +50,46 @@ The current script outputs these columns:
 - `Officer`
 - `Summary`
 
+---
+
+# Folder Structure
+
+```text
+pdf/
+├── data/
+├── output/
+├── src/
+├── requirements.txt
+└── README.md
+```
+
+---
+
+# Processing Pipeline
+
+For each PDF report, the system performs:
+
+1. Native PDF text extraction using PyMuPDF
+2. OCR fallback for scanned/image-based documents
+3. Named entity extraction using spaCy
+4. Rule-based field identification
+5. Incident summary generation
+6. Structured CSV export
+
+---
+
+# Core Technologies
+
 The pipeline uses:
 
-- PyMuPDF for native PDF text extraction
-- Tesseract OCR as a fallback for scanned PDFs
-- spaCy NER plus rule-based heuristics for field extraction
+- `PyMuPDF` for direct PDF text extraction
+- `Tesseract OCR` for scanned document processing
+- `spaCy` for NLP-based entity extraction
+- Rule-based heuristics for structured field mapping
 
-## Setup
+---
+
+# Setup
 
 From the `pdf/` folder:
 
@@ -36,63 +100,141 @@ pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 ```
 
-If your PDF is scanned or image-based, install Tesseract OCR too:
+---
+
+# OCR Setup
+
+For scanned PDFs, install Tesseract OCR:
 
 ```bash
 brew install tesseract
 ```
 
-If Tesseract is installed but not on your shell `PATH`, set:
+If Tesseract is not available in system PATH:
 
 ```bash
 export TESSERACT_CMD="/opt/homebrew/bin/tesseract"
 ```
 
-## Input
+---
 
-Place PDFs in `data/` or pass a full path on the command line.
+# Input
 
-Sample file already in this folder:
+Place PDF files inside:
 
-- `data/LESO2.pdf`
+```text
+data/
+```
 
-## Run
+Example sample file:
 
-From the `pdf/` folder:
+```text
+data/LESO2.pdf
+```
+
+You may also pass custom PDF paths directly through the command line.
+
+---
+
+# Running the Pipeline
+
+## Example Run
 
 ```bash
 python3 src/document_analysis.py data/LESO2.pdf -o output/incident_extract.csv -v
 ```
 
-Generic form:
+---
+
+## Generic Workflow
 
 ```bash
 python3 src/document_analysis.py path/to/report.pdf -o output/incident_extract.csv
 ```
 
-Optional arguments:
+---
 
-- `--report-id "custom_id"` to override the default report ID
-- `--spacy-model en_core_web_sm` to choose a spaCy model
-- `-v` or `--verbose` for debug logs
+# Optional Arguments
 
-If you omit the PDF path, the script prompts you for it interactively.
+- `--report-id` → override default report identifier
+- `--spacy-model` → specify custom spaCy model
+- `-v` or `--verbose` → enable debugging logs
 
-## Output
+If no PDF path is provided, the script prompts for one interactively.
 
-The script:
+---
 
-- prints the extracted row in the terminal
-- saves the CSV to the file passed with `-o`
+# Output
 
-Recommended output path:
+Generated output:
 
-- `output/incident_extract.csv`
+```text
+output/incident_extract.csv
+```
 
-## Notes
+The pipeline:
+- prints extracted results in terminal
+- exports structured incident intelligence to CSV
 
-- The script first tries native text extraction and falls back to OCR when the PDF appears text-sparse.
-- When a field is not reliable, the script returns `Not Found`.
-- This module is currently designed for one PDF at a time.
-- The final integration pipeline links this output by `Report_ID` through
-  `integration/data/incident_map.csv`.
+---
+
+# Example Workflow
+
+Input:
+- incident PDF reports
+
+Processing:
+- text extraction
+- OCR fallback
+- NLP entity recognition
+- structured field extraction
+
+Output:
+- structured incident report CSV
+
+---
+
+# Skills Demonstrated
+
+- OCR-based document processing
+- PDF parsing workflows
+- Named Entity Recognition (NER)
+- Rule-based information extraction
+- NLP-driven structured extraction
+- Incident intelligence generation
+- Multimodal AI integration
+
+---
+
+# Limitations
+
+- OCR accuracy depends heavily on scan quality
+- Poorly formatted PDFs may reduce extraction reliability
+- Some extracted fields may return `Not Found`
+- Current implementation processes one PDF at a time
+
+---
+
+# Integration
+
+The generated output integrates into the larger multimodal incident analysis system through:
+
+```text
+integration/data/incident_map.csv
+```
+
+using:
+
+```text
+Report_ID
+```
+
+as the linking identifier.
+
+---
+
+# Notes
+
+- The system first attempts native PDF extraction before using OCR fallback workflows.
+- Large PDF datasets were excluded from GitHub for repository optimization.
+- This module was designed as part of a multimodal AI incident analysis platform.
