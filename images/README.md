@@ -1,19 +1,47 @@
-# Image Analysis
+# Image Analysis Module
 
-This folder contains the Image Analyst module for the Multimodal Crime / Incident Report Analyzer assignment.
+Computer vision pipeline for analyzing incident-related images using object detection, OCR, and scene classification workflows.
 
-The pipeline uses YOLOv8 object detection and OCR to analyze incident images and generate a structured CSV output. The current implementation is focused on fire and smoke detection using a Roboflow dataset, along with scene classification and text extraction from images.
+This module is part of the larger Multimodal Crime Report Analyzer system and focuses on extracting structured intelligence from images through YOLOv8-based object detection and OCR-driven text extraction.
 
-## Assignment Mapping
+The current implementation is optimized for fire and smoke scene analysis using a Roboflow-based dataset.
 
-This module covers the Image Analyst role from the assignment:
+---
 
-- detect relevant visual objects in incident images
-- classify scene type
-- extract visible text using OCR
-- export structured results to CSV
+# Tech Stack
 
-Current CSV columns:
+`Python` `YOLOv8` `OpenCV` `OCR` `Tesseract` `Computer Vision` `Pandas` `Roboflow`
+
+---
+
+# Module Overview
+
+The image analysis pipeline processes incident-related images and generates structured outputs containing:
+
+- Scene classification
+- Object detection results
+- Bounding box coordinates
+- OCR-extracted text
+- Confidence scores
+
+The processed outputs are exported into structured CSV format for integration into the larger multimodal incident analysis system.
+
+---
+
+# Features
+
+- YOLOv8-based object detection
+- Fire and smoke scene analysis
+- OCR-based text extraction
+- Scene classification
+- Structured CSV export
+- Inference and retraining workflows
+
+---
+
+# Current Output Columns
+
+Generated CSV fields:
 
 - `Image_ID`
 - `Scene_Type`
@@ -22,7 +50,9 @@ Current CSV columns:
 - `Text_Extracted`
 - `Confidence`
 
-## Folder Structure
+---
+
+# Folder Structure
 
 ```text
 images/
@@ -30,35 +60,55 @@ images/
 ├── README.md
 ├── app.config.yaml
 ├── data/
-│   └── fire-2/
 ├── output/
-│   ├── detection_sample.png
-│   └── image_analyst_output.csv
 ├── requirements.txt
 ├── runs/
-│   └── detect/
-│       └── fire_model/
-│           └── weights/
-│               └── best.pt
 └── src/
-    └── main.py
 ```
 
-## Main Files
+---
 
-- `src/main.py` - main script for training and inference
-- `app.config.yaml` - model, inference, and output settings
-- `.env.example` - environment variable template
-- `requirements.txt` - Python dependencies
-- `data/fire-2/` - local image dataset used by this module
-- `runs/detect/fire_model/weights/best.pt` - trained YOLO weights for inference
+# Main Files
 
-## Requirements
+- `src/main.py` → main training and inference pipeline
+- `app.config.yaml` → inference and output configuration
+- `.env.example` → environment variable template
+- `requirements.txt` → project dependencies
+- `runs/detect/fire_model/weights/best.pt` → trained YOLOv8 model weights
 
-- Python 3.x
-- Tesseract OCR installed if OCR extraction is needed
+---
 
-Install Python dependencies from this folder:
+# Dataset
+
+The module currently uses a local fire and smoke incident dataset:
+
+```text
+data/fire-2
+```
+
+### Current Dataset Statistics
+
+- Total available images: `8456`
+- Default inference limit: `150`
+
+---
+
+# Processing Pipeline
+
+For each input image, the system performs:
+
+1. Image preprocessing
+2. Object detection using YOLOv8
+3. Scene classification
+4. OCR-based text extraction
+5. Confidence score estimation
+6. Structured CSV export
+
+---
+
+# Setup
+
+From the `images/` folder:
 
 ```bash
 python3 -m venv .venv
@@ -68,11 +118,11 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-## Environment Configuration
+---
 
-The module is configured to use the dataset stored inside this folder.
+# Environment Configuration
 
-`.env`:
+`.env`
 
 ```env
 ROBOFLOW_API_KEY=
@@ -80,79 +130,131 @@ DATASET_LOCATION=data/fire-2
 TESSERACT_CMD=
 ```
 
-Notes:
+### Notes
 
-- Keep `DATASET_LOCATION=data/fire-2` to use the local dataset in this repo
-- Leave `ROBOFLOW_API_KEY` empty unless you want to download a dataset from Roboflow
-- Set `TESSERACT_CMD` only if Tesseract is installed outside your system PATH
+- Keep `DATASET_LOCATION=data/fire-2` to use the local dataset
+- `ROBOFLOW_API_KEY` is optional for external dataset downloads
+- `TESSERACT_CMD` is only required if Tesseract is outside system PATH
 
-## How To Run
+---
 
-From the `images` folder:
+# Running the Pipeline
 
-```bash
-cd /Users/archana/Documents/SP2026/AI_For_Engg/Assignment_3/MultimodalCrimeReportAnalyzer/images
-source .venv/bin/activate
-```
+## Inference Only
 
-### Inference Only
+Recommended workflow for reproducing assignment outputs.
 
-This is the recommended run mode for verifying the current assignment output.
-
-To regenerate the current final CSV with 150 images:
+### Run on 150 images
 
 ```bash
 python3 src/main.py --mode infer --config app.config.yaml --max-images 150
 ```
 
-For a smaller quick test:
+---
+
+### Quick Test
 
 ```bash
 python3 src/main.py --mode infer --config app.config.yaml --max-images 25
 ```
 
-To process all dataset images:
+---
+
+### Process Full Dataset
 
 ```bash
 python3 src/main.py --mode infer --config app.config.yaml --max-images 0
 ```
 
-### Train And Infer
+---
 
-If you want to retrain the model and then run inference:
+## Train + Inference Workflow
 
 ```bash
 python3 src/main.py --mode all --config app.config.yaml
 ```
 
-## Output Files
+---
 
-After a successful run, the module generates:
+# Outputs
+
+Generated files:
 
 - `output/image_analyst_output.csv`
 - `output/detection_sample.png`
 
-The CSV contains one row per processed image with the detected scene label, object classes, OCR text, and confidence score.
+The CSV contains:
+- detected scene labels
+- object classes
+- OCR text
+- confidence scores
 
-## Current Verification Result
+---
 
-The current setup successfully runs on the local dataset:
+# Example Workflow
 
-- dataset location: `data/fire-2`
-- total dataset images available: `8456`
-- current default inference limit in `app.config.yaml`: `150`
+Input:
+- incident scene images
 
-## Quick Output Check
+Processing:
+- YOLOv8 detection
+- OCR extraction
+- scene classification
 
-To preview the CSV in terminal:
+Output:
+- structured image intelligence CSV
+
+---
+
+# Skills Demonstrated
+
+- Computer vision workflows
+- YOLOv8 object detection
+- OCR-based image processing
+- Scene classification
+- Structured AI pipelines
+- Dataset-driven model inference
+- Multimodal system integration
+
+---
+
+# Quick Output Preview
 
 ```bash
 head output/image_analyst_output.csv
 ```
 
-## Notes
+---
 
-- The current model is best suited for fire and smoke scene analysis
-- OCR results may vary slightly across environments because Tesseract output is not always perfectly deterministic
-- The final integration pipeline links this output by `Image_ID` through
-  `integration/data/incident_map.csv`
+# Limitations
+
+- The current model is optimized primarily for fire and smoke scenarios
+- OCR accuracy may vary across environments and image quality
+- Complex scenes with overlapping objects may reduce detection accuracy
+- Confidence scores depend heavily on dataset distribution and lighting conditions
+
+---
+
+# Integration
+
+The generated output integrates into the larger multimodal incident analysis system through:
+
+```text
+integration/data/incident_map.csv
+```
+
+using:
+
+```text
+Image_ID
+```
+
+as the linking identifier.
+
+---
+
+# Notes
+
+- Large datasets and generated outputs were excluded from GitHub for repository optimization.
+- GPU acceleration improves inference speed significantly.
+- This module was developed as part of a larger multimodal AI incident analysis platform.
