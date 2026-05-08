@@ -1,42 +1,138 @@
 # Integration Module
 
-This module combines the current structured outputs from:
+Unified multimodal incident intelligence pipeline that combines structured outputs from audio, document, image, text, and video analysis workflows into a centralized incident-level reporting system.
 
-- `audio/output/audio_output.csv`
-- `pdf/output/incident_extract.csv`
-- `images/output/image_analyst_output.csv`
-- `video/output/video_event_log.csv`
-- `text/output/text_output.csv`
+This module serves as the final aggregation layer of the Multimodal Crime Report Analyzer project and generates consolidated incident intelligence reports through cross-modal mapping and Streamlit-based visualization.
 
-Audio is integrated through the same incident map workflow used by the other
-modalities.
+---
 
-The main deliverables in this folder are:
+# Tech Stack
 
-- `data/incident_map.csv` - manual cross-modal mapping file
-- `output/final_integrated_incident_report.csv` - final merged structured dataset
-- `app.py` - Streamlit dashboard and query interface
+`Python` `Pandas` `Streamlit` `Data Integration` `CSV Processing` `Multimodal AI` `Analytics Dashboard`
 
-## What The Script Does
+---
 
-The integration script supports two workflows:
+# Module Overview
 
-1. Mapped mode
-   Uses a manual incident map CSV so every output row is tied to a real
-   `Incident_ID`. This is the default and is the correct assignment-ready flow.
+The integration pipeline merges outputs generated from:
 
-2. Prototype mode
-   Creates one synthetic summary row from all five CSVs. Keep this only for
-   rough experimentation, not for final submission.
+- Audio analysis
+- Document analysis
+- Image analysis
+- Text analysis
+- Video analysis
 
-## Folder Layout
+The system links modality outputs through a shared incident mapping workflow and generates:
 
-- `app.py` - Streamlit dashboard for filtering and presenting incidents
-- `src/integrate_reports.py` - main integration script
-- `data/incident_map.csv` - starter mapping file for assignment-style integration
-- `output/` - generated final CSV files
+- Unified incident summaries
+- Severity categorization
+- Cross-modal evidence aggregation
+- Interactive dashboard visualization
 
-## Setup
+---
+
+# Input Sources
+
+The integration pipeline combines structured outputs from:
+
+```text
+audio/output/audio_output.csv
+pdf/output/incident_extract.csv
+images/output/image_analyst_output.csv
+video/output/video_event_log.csv
+text/output/text_output.csv
+```
+
+---
+
+# Main Deliverables
+
+The module produces:
+
+- `data/incident_map.csv`
+- `output/final_integrated_incident_report.csv`
+- `app.py` Streamlit dashboard
+
+---
+
+# Integration Workflow
+
+The integration script supports two workflows.
+
+---
+
+## 1. Mapped Integration Mode
+
+This is the primary assignment-ready workflow.
+
+The system uses:
+
+```text
+data/incident_map.csv
+```
+
+to map modality-specific IDs into a shared:
+
+```text
+Incident_ID
+```
+
+This enables cross-modal incident aggregation across:
+- audio
+- image
+- text
+- video
+- document evidence
+
+---
+
+## 2. Prototype Mode
+
+Prototype mode creates a simplified synthetic merged output using available modality files.
+
+This workflow is intended only for experimentation and debugging.
+
+---
+
+# Folder Structure
+
+```text
+integration/
+├── app.py
+├── README.md
+├── data/
+├── output/
+├── requirements.txt
+└── src/
+```
+
+---
+
+# Main Files
+
+- `app.py` → Streamlit dashboard interface
+- `src/integrate_reports.py` → integration pipeline
+- `data/incident_map.csv` → cross-modal mapping file
+- `output/final_integrated_incident_report.csv` → final structured dataset
+
+---
+
+# Processing Pipeline
+
+The integration workflow performs:
+
+1. Loading modality CSV outputs
+2. Normalizing structured fields
+3. Aggregating video clip summaries
+4. Cross-modal record mapping
+5. Incident-level merging
+6. Severity inference
+7. Final dataset generation
+8. Dashboard visualization
+
+---
+
+# Setup
 
 From the `integration/` folder:
 
@@ -46,52 +142,82 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Run Integration
+---
 
-From the repository root:
+# Running the Integration Pipeline
+
+From repository root:
 
 ```bash
 python3 integration/src/integrate_reports.py
 ```
 
-Or from the `integration/` folder:
+---
+
+From the `integration/` folder:
 
 ```bash
 python3 src/integrate_reports.py
 ```
 
-Default output:
+---
 
-- `output/final_integrated_incident_report.csv`
+# Generated Output
 
-Typical workflow:
+Default generated dataset:
 
-1. Regenerate or collect each modality CSV.
-2. Update `data/incident_map.csv` with the rows you want to treat as the same incident.
-3. Run `python3 src/integrate_reports.py`.
-4. Open the dashboard with `streamlit run app.py`.
+```text
+output/final_integrated_incident_report.csv
+```
 
-## Run Dashboard
+---
 
-From the `integration/` folder:
+# Typical Workflow
+
+1. Generate outputs from each modality
+2. Update `data/incident_map.csv`
+3. Run integration pipeline
+4. Launch dashboard with Streamlit
+5. Explore unified incident intelligence outputs
+
+---
+
+# Streamlit Dashboard
+
+Launch dashboard:
 
 ```bash
 streamlit run app.py
 ```
 
+---
+
+# Dashboard Features
+
 The dashboard includes:
 
-- sidebar filters for incident, source, severity, text crime type, and image scene type
-- audio event filtering
-- a keyword search across key incident fields
-- metric cards for incident counts and severity totals
-- simple severity and source charts
-- a filtered incident table
-- a detail panel with grouped modality data for the selected incident
+- Incident-level filtering
+- Severity filtering
+- Source-based filtering
+- Audio-event filtering
+- Keyword search
+- Incident statistics
+- Severity visualizations
+- Source distribution charts
+- Interactive incident table
+- Detailed grouped incident views
 
-## Incident Map
+---
 
-The default workflow expects `data/incident_map.csv` with:
+# Incident Mapping
+
+The default integration workflow expects:
+
+```text
+data/incident_map.csv
+```
+
+with:
 
 - `Incident_ID`
 - `Call_ID`
@@ -100,29 +226,83 @@ The default workflow expects `data/incident_map.csv` with:
 - `Clip_ID`
 - `Text_ID`
 
-Default starter map included:
+This mapping enables:
+- cross-modal linking
+- evidence aggregation
+- incident-level intelligence generation
 
-- `data/incident_map.csv`
+---
 
-You can edit it as your team finalizes which rows belong to the same incident.
-
-Rows do not need to contain all modalities. Leave unmatched fields blank when an
-incident only has audio, document, image, video, or text evidence available.
-
-Example run with a custom map:
+# Example Custom Integration Run
 
 ```bash
 python3 src/integrate_reports.py --incident-map data/incident_map.csv
 ```
 
-## Notes
+---
 
-- Video is first aggregated from frame-level rows to clip-level summaries before
-  merging.
-- The default severity label is inferred from combined signals across the mapped
-  modalities for each incident.
-- If you really want the old single-row summary, run:
+# Example Prototype Run
 
 ```bash
 python3 src/integrate_reports.py --prototype
 ```
+
+---
+
+# Skills Demonstrated
+
+- Multimodal data integration
+- Structured incident intelligence generation
+- Cross-modal entity mapping
+- Data pipeline orchestration
+- Dashboard development
+- Incident aggregation workflows
+- Streamlit analytics applications
+- End-to-end AI system integration
+
+---
+
+# Example Output
+
+Final integrated dataset:
+
+```text
+integration/output/final_integrated_incident_report.csv
+```
+
+The generated report combines:
+- audio insights
+- OCR outputs
+- object detections
+- NLP classifications
+- video event summaries
+
+into a unified incident-level intelligence view.
+
+---
+
+# Limitations
+
+- Current incident linking relies on manual mapping
+- Cross-modal matching is rule-based rather than learned
+- Missing modality outputs may reduce incident completeness
+- Prototype mode is not intended for production workflows
+
+---
+
+# Future Improvements
+
+- Automated multimodal entity matching
+- Real-time incident ingestion
+- LLM-based incident summarization
+- Cloud deployment and API integration
+- Advanced analytics and investigation dashboards
+- Cross-modal retrieval and search workflows
+
+---
+
+# Notes
+
+- Large raw modality outputs were excluded from GitHub for repository optimization.
+- Video data is aggregated into clip-level summaries before merging.
+- The module was designed as the central orchestration layer of the multimodal incident analysis system.
