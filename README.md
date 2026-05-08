@@ -1,204 +1,206 @@
 # Multimodal Crime Report Analyzer
 
-This project is a team-built multimodal crime analysis system for assignment work across audio, document, image, text, video, and final integration stages. Each modality lives in its own folder so it can be developed, tested, and documented independently.
+AI-powered multimodal incident analysis system integrating text, audio, document, image, and video intelligence into a unified reporting pipeline.
 
-## Assignment Folder Mapping
+This project combines multiple AI and data processing workflows to analyze crime-related information across different modalities and generate a structured incident-level report through a centralized integration pipeline and Streamlit dashboard.
 
-This repository now matches the assignment folder names directly:
+Developed as a collaborative graduate AI project with emphasis on multimodal machine learning, computer vision, NLP, OCR, and integrated analytics workflows.
 
-- `audio/`
-- `pdf/`
-- `images/`
-- `video/`
-- `text/`
-- `integration/`
+---
 
-## Current Modules
+# Tech Stack
 
-- `audio/` processes emergency-call audio and writes structured CSV output
-- `pdf/` extracts structured incident details from PDF reports
-- `images/` analyzes scene images and writes structured detection CSV output
-- `text/` analyzes crime-related text records and writes structured CSV outputs
-- `video/` analyzes surveillance-style clips and generates an event log
-- `integration/` merges the available modality outputs into one assignment-ready incident report and dashboard
+`Python` `YOLOv8` `OpenCV` `spaCy` `Transformers` `OCR` `NLTK` `Pandas` `Streamlit` `Computer Vision` `NLP`
 
-## Repository Structure
+---
+
+# Project Overview
+
+The system processes and analyzes multiple forms of crime-related data including:
+
+- Emergency-call audio
+- Incident PDF reports
+- Scene images
+- Crime-related text
+- Surveillance-style video clips
+
+Each modality is analyzed independently and then merged into a unified incident-level intelligence report.
+
+The final integration pipeline generates:
+- Structured incident summaries
+- Severity categorization
+- Cross-modal entity mapping
+- Streamlit dashboard visualization
+
+---
+
+# System Architecture
+
+The project is divided into independent modality pipelines:
+
+- `audio/` → audio transcription and emergency-call analysis
+- `pdf/` → OCR and structured incident extraction
+- `images/` → object detection and scene analysis
+- `text/` → NLP-based text analysis and classification
+- `video/` → motion analysis and surveillance event extraction
+- `integration/` → unified incident aggregation and dashboard generation
+
+The integration layer combines outputs from all modalities into a centralized incident intelligence dataset.
+
+---
+
+# Modalities
+
+## Audio Analysis
+
+Processes emergency-style audio recordings and extracts structured information from transcripts.
+
+### Features
+- Audio preprocessing
+- Speech transcription
+- Structured CSV generation
+- Incident-level metadata extraction
+
+---
+
+## Document Analysis
+
+Extracts incident information from PDF reports using OCR and NLP workflows.
+
+### Features
+- PDF parsing
+- OCR-based extraction
+- Named entity extraction
+- Structured incident report generation
+
+---
+
+## Image Analysis
+
+Uses computer vision workflows to analyze crime-scene images.
+
+### Features
+- YOLOv8-based object detection
+- Scene analysis
+- OCR extraction from images
+- Structured detection outputs
+
+---
+
+## Text Analysis
+
+Processes crime-related textual reports using NLP pipelines.
+
+### Features
+- Text preprocessing
+- Named Entity Recognition (NER)
+- Sentiment analysis
+- Topic classification
+- Severity labeling
+
+---
+
+## Video Analysis
+
+Analyzes surveillance-style clips for motion and event detection.
+
+### Features
+- Motion detection
+- Event extraction
+- Frame-level analysis
+- Structured event logging
+
+---
+
+## Integration Pipeline
+
+Combines all modality outputs into a unified incident-level report.
+
+### Features
+- Cross-modal record mapping
+- Incident aggregation
+- Severity scoring
+- Streamlit dashboard generation
+
+---
+
+# Repository Structure
 
 ```text
 MultimodalCrimeReportAnalyzer/
-├── README.md
 ├── audio/
-│   ├── README.md
-│   ├── data/
-│   ├── output/
-│   ├── requirements.txt
-│   └── src/
 ├── pdf/
-│   ├── README.md
-│   ├── data/
-│   ├── output/
-│   ├── requirements.txt
-│   └── src/
 ├── images/
-│   ├── README.md
-│   ├── data/
-│   ├── output/
-│   ├── requirements.txt
-│   └── src/
-├── integration/
-│   ├── app.py
-│   ├── README.md
-│   ├── data/
-│   ├── output/
-│   ├── requirements.txt
-│   └── src/
 ├── text/
-│   ├── README.md
-│   ├── data/
-│   ├── output/
-│   ├── requirements.txt
-│   ├── requirements-full.txt
-│   └── src/
 ├── video/
-│   ├── README.md
-│   ├── data/
-│   ├── frames/
-│   ├── output/
-│   ├── requirements.txt
-│   └── src/
+├── integration/
+├── README.md
 └── yolov8n.pt
 ```
 
-## Module Guides
+---
 
-Each implemented module has its own README with setup and run instructions:
+# Example Outputs
 
-- [Audio Analysis](audio/README.md)
-- [Document Analysis](pdf/README.md)
-- [Image Analysis](images/README.md)
-- [Text Analysis](text/README.md)
-- [Video Analysis](video/README.md)
-- [Integration](integration/README.md)
+The implemented pipelines generate structured outputs including:
 
-## Quick Start
+- Audio incident summaries
+- OCR-extracted PDF reports
+- Object detection logs
+- NLP-based text classification results
+- Video event logs
+- Final integrated incident reports
 
-Choose the module you want to run, move into that folder, create a virtual environment, install dependencies, and follow that module's README.
+The integration module produces:
 
-## Demo Only: Run Streamlit Dashboard
-
-If you only want to show the final dashboard on another laptop, you can skip the
-full audio, image, text, PDF, and video pipelines. The repository already
-includes a sample integrated CSV at
-`integration/output/final_integrated_incident_report.csv`, and the Streamlit app
-uses that file by default.
-
-From the repository root:
-
-```bash
-cd integration
-python3 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install -r requirements.txt
-streamlit run app.py
+```text
+integration/output/final_integrated_incident_report.csv
 ```
 
-Windows activation command:
+---
 
-```bash
-.venv\Scripts\activate
-```
+# Streamlit Dashboard
 
-Then open `http://localhost:8501` in a browser.
+The integration pipeline includes a Streamlit dashboard for viewing unified incident reports and modality outputs.
 
-If the integrated CSV is missing for any reason, generate it once with:
-
-```bash
-python3 src/integrate_reports.py
-streamlit run app.py
-```
-
-Examples:
-
-Audio analysis:
-
-```bash
-cd audio
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python3 src/audio_analyzer.py --data data --output output/audio_output.csv --max 10 --summary
-```
-
-Document analysis:
-
-```bash
-cd pdf
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python -m spacy download en_core_web_sm
-python3 src/document_analysis.py data/LESO2.pdf -o output/incident_extract.csv -v
-```
-
-Text analysis:
-
-```bash
-cd text
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python3 src/text_analysis.py --input "data/CrimeReport (1).txt" --no-transformers
-```
-
-Image analysis:
-
-```bash
-cd images
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python3 src/main.py --mode infer --config app.config.yaml --max-images 150
-```
-
-Video analysis:
-
-```bash
-cd video
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python3 src/motion_detection.py
-```
-
-Integration:
+Run locally:
 
 ```bash
 cd integration
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python3 src/integrate_reports.py
 streamlit run app.py
 ```
 
-The integration module uses a manual mapping file at `integration/data/incident_map.csv`
-to link `Call_ID`, `Report_ID`, `Image_ID`, `Clip_ID`, and `Text_ID` to a shared
-`Incident_ID`.
+---
 
-## Outputs
+# Skills Demonstrated
 
-Current outputs produced by the implemented modules:
+- Multimodal AI system design
+- Computer vision workflows
+- NLP pipelines and text analytics
+- OCR-based document processing
+- Audio and video analysis
+- Streamlit dashboard development
+- Data integration pipelines
+- Structured incident intelligence generation
 
-- `audio/output/audio_output.csv`
-- `pdf/output/incident_extract.csv`
-- `images/output/image_analyst_output.csv`
-- `text/output/text_output.csv`
-- `video/output/video_event_log.csv`
-- `integration/output/final_integrated_incident_report.csv`
+---
 
-## Notes
+# Future Improvements
 
-- `video/` uses the `yolov8n.pt` model file already present in the project root.
-- `pdf/` may require Tesseract OCR for scanned PDFs.
-- `text/` can run in a lightweight rule-based mode with `--no-transformers`.
-- `integration/` includes a Streamlit dashboard at `integration/app.py`.
+- Real-time multimodal streaming support
+- Advanced LLM-based report summarization
+- Cross-modal retrieval workflows
+- Cloud deployment and scalable APIs
+- Improved event correlation and entity linking
+- Interactive investigation dashboard enhancements
+
+---
+
+# Notes
+
+- Large raw datasets and media files were excluded from GitHub for repository optimization.
+- Some workflows require GPU acceleration for efficient processing.
+- The repository focuses on modular AI pipelines and portfolio-friendly project structure.
