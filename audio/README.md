@@ -1,16 +1,45 @@
 # Audio Analysis Module
 
-This module processes short emergency-call audio clips and writes a structured CSV with transcript, event label, location, sentiment, and urgency score.
+AI-powered emergency audio analysis pipeline for extracting structured incident intelligence from short emergency-call recordings.
 
-## Folder Layout
+This module processes emergency-style audio clips using speech transcription, NLP-based extraction, sentiment analysis, and rule-based classification to generate structured incident-level outputs for downstream multimodal integration.
 
-- `src/` contains the audio analysis script
-- `data/` contains input audio files and optional metadata
-- `output/` contains generated CSV output
+---
 
-## Supported Input
+# Tech Stack
 
-The script accepts these audio formats:
+`Python` `Whisper` `spaCy` `Transformers` `NLTK` `Speech Recognition` `Pandas` `Audio Processing`
+
+---
+
+# Module Overview
+
+The pipeline analyzes short emergency-call audio recordings and extracts:
+
+- Speech transcripts
+- Incident event labels
+- Location references
+- Sentiment classification
+- Urgency scoring
+
+The processed outputs are converted into structured CSV format for integration into the larger multimodal incident analysis system.
+
+---
+
+# Features
+
+- Automatic speech transcription using Whisper
+- Named entity extraction for location identification
+- Rule-based emergency event classification
+- Sentiment analysis for caller distress detection
+- Urgency score generation
+- Structured CSV output generation
+
+---
+
+# Supported Input Formats
+
+The module supports:
 
 - `.wav`
 - `.mp3`
@@ -18,19 +47,28 @@ The script accepts these audio formats:
 - `.flac`
 - `.ogg`
 
-Optional metadata file:
+Optional metadata support:
 
-- `data/911_metadata.csv`
+```text
+data/911_metadata.csv
+```
 
-If the metadata CSV is present, the script uses it to improve event and location extraction.
+If metadata is available, it is used to improve:
+- event extraction
+- contextual interpretation
+- location identification
 
-## Output
+---
 
-The pipeline writes:
+# Output
 
-- `output/audio_output.csv`
+Generated output:
 
-Current output columns:
+```text
+output/audio_output.csv
+```
+
+### Output Columns
 
 - `Call_ID`
 - `Transcript`
@@ -39,7 +77,35 @@ Current output columns:
 - `Sentiment`
 - `Urgency_Score`
 
-## Setup
+---
+
+# Processing Pipeline
+
+For each audio clip, the system performs:
+
+1. Speech transcription using Whisper
+2. Location extraction using spaCy and regex workflows
+3. Emergency-event classification using keyword rules
+4. Sentiment prediction for distress detection
+5. Urgency score computation
+6. Structured CSV export
+
+---
+
+# Folder Structure
+
+```text
+audio/
+├── data/
+├── output/
+├── src/
+├── requirements.txt
+└── README.md
+```
+
+---
+
+# Setup
 
 From the `audio/` folder:
 
@@ -50,57 +116,116 @@ pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 ```
 
-Install `ffmpeg` too, because Whisper needs it to decode audio:
+Install `ffmpeg` for Whisper audio decoding:
 
 ```bash
 brew install ffmpeg
 ```
 
-On first run, Whisper and the Hugging Face sentiment model may download model weights automatically.
+On first execution, Whisper and Hugging Face models may automatically download pretrained weights.
 
-## Run
+---
 
-From the `audio/` folder:
+# Running the Pipeline
 
-Quick test on 10 files:
+## Quick Test
 
 ```bash
 python3 src/audio_analyzer.py --data data --output output/audio_output.csv --max 10 --summary
 ```
 
-Full dataset:
+---
+
+## Full Dataset Processing
 
 ```bash
 python3 src/audio_analyzer.py --data data --output output/audio_output.csv
 ```
 
-Faster run with a smaller Whisper model:
+---
+
+## Faster Lightweight Inference
 
 ```bash
 python3 src/audio_analyzer.py --data data --output output/audio_output.csv --max 10 --whisper_model tiny --summary
 ```
 
-Optional arguments:
+---
 
-- `--max N` to process only the first `N` files
-- `--whisper_model tiny|base|small|medium|large` to choose model size
-- `--summary` to print event and sentiment counts in the terminal
-- `--output path/to/audio_output.csv` to change the output file
+# Optional Arguments
 
-## What It Does
+- `--max N` → process first `N` files only
+- `--whisper_model` → select Whisper model size
+- `--summary` → print event and sentiment statistics
+- `--output` → specify custom output path
 
-For each input audio clip, the pipeline:
+Supported Whisper models:
 
-- transcribes speech with Whisper
-- extracts location hints using spaCy and regex rules
-- classifies the event with keyword rules
-- predicts calm vs distressed sentiment
-- computes a simple urgency score
+- `tiny`
+- `base`
+- `small`
+- `medium`
+- `large`
 
-## Notes
+---
 
-- Audio clips in this dataset are very short, so transcripts can be incomplete.
-- If transcription fails, the row may contain `ERROR` in the `Transcript` column.
-- Metadata helps improve results, especially for location and emergency context.
-- The final integration pipeline links this output by `Call_ID` through
-  `integration/data/incident_map.csv`.
+# Example Workflow
+
+Input:
+- emergency-call audio clips
+
+Processing:
+- transcription
+- NLP extraction
+- sentiment analysis
+- urgency estimation
+
+Output:
+- structured incident intelligence CSV
+
+---
+
+# Skills Demonstrated
+
+- Speech-to-text processing
+- NLP entity extraction
+- Audio analytics workflows
+- Sentiment analysis
+- Structured data generation
+- Rule-based AI systems
+- Multimodal pipeline integration
+
+---
+
+# Limitations
+
+- Very short audio clips may produce incomplete transcripts
+- Background noise can reduce transcription quality
+- Rule-based event classification may miss nuanced scenarios
+- Sentiment analysis is limited by transcript quality
+
+---
+
+# Integration
+
+The generated output integrates into the larger multimodal incident analysis system through:
+
+```text
+integration/data/incident_map.csv
+```
+
+using:
+
+```text
+Call_ID
+```
+
+as the primary linking identifier.
+
+---
+
+# Notes
+
+- This module was designed as part of a multimodal AI incident analysis pipeline.
+- GPU acceleration can significantly improve Whisper inference speed.
+- Large raw audio datasets were excluded from GitHub for repository optimization.
